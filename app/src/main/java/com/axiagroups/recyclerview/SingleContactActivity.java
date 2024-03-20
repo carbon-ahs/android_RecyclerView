@@ -9,7 +9,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class SingleContact extends AppCompatActivity {
+public class SingleContactActivity extends AppCompatActivity {
     private TextView nameTV, addressTV;
     private String name, address;
     @Override

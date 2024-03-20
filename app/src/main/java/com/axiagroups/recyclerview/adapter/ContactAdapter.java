@@ -1,7 +1,5 @@
 package com.axiagroups.recyclerview.adapter;
 
-import static androidx.core.content.ContextCompat.startActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -12,9 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.axiagroups.recyclerview.MainActivity;
 import com.axiagroups.recyclerview.R;
-import com.axiagroups.recyclerview.SingleContact;
+import com.axiagroups.recyclerview.SingleContactActivity;
 import com.axiagroups.recyclerview.model.Contact;
 
 import java.util.List;
@@ -45,7 +42,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHode
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(context.getApplicationContext(), SingleContact.class);
+                Intent i = new Intent(context.getApplicationContext(), SingleContactActivity.class);
 //                Intent i = new Intent(this.context, SingleContact.class);
 //                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 i.putExtra("name",contact.getName());

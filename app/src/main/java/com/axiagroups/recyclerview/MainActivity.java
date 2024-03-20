@@ -1,32 +1,14 @@
 package com.axiagroups.recyclerview;
 
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import com.axiagroups.recyclerview.adapter.ContactAdapter;
-import com.axiagroups.recyclerview.model.Contact;
-import com.axiagroups.recyclerview.util.Util;
-import com.github.javafaker.Faker;
-
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    private TextView textView;
-    private RecyclerView recyclerView;
-    private ContactAdapter contactAdapter;
-    private SearchView searchView;
-    List<Contact> conactList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,29 +20,6 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
-        conactList = Util.getNameList();
-        Log.d("TAG", "onCreate: " + conactList);
-        searchView = findViewById(R.id.searchView);
-        searchView.clearFocus();
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                Util.filteredList(MainActivity.this , newText, conactList, contactAdapter);
-                return true;
-            }
-        });
-
-        recyclerView = findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        contactAdapter = new ContactAdapter(this, conactList);
-        recyclerView.setAdapter(contactAdapter);
+//        https://youtu.be/HIBO5lgsKU8?si=fXmy4M-6FeyxzmnK&t=596
     }
-
 }

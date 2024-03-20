@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_margin="@dimen/general_margine"
+        android:padding="@dimen/general_padding">
+
+        <ImageButton
+            android:id="@+id/action_bar_menuBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_margin="@dimen/general_margine"
+            app:srcCompat="@drawable/baseline_menu_24"
+            app:tint="@color/black" />
+
+        <TextView
+            android:id="@+id/action_bar_appnameTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_margin="@dimen/general_margine"
+            android:layout_toEndOf="@id/action_bar_menuBtn"
+            android:text="TextView" />
+
+        <ImageButton
+            android:id="@+id/action_bar_aboutBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="@dimen/general_margine"
+            app:srcCompat="@drawable/baseline_info_24" />
+    </RelativeLayout>
+</RelativeLayout>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn = "navigation_view">
+    <group
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_search"
+            android:title="Search"
+            android:icon="@drawable/baseline_screen_search_desktop_24"/>
+        <item
+            android:id="@+id/nav_chair"
+            android:title="Chair"
+            android:icon="@drawable/baseline_chair_24"/>
+        <item
+            android:id="@+id/nav_allContact"
+            android:title="All Contact"
+            android:icon="@drawable/baseline_monitor_24"/>
+    </group>
+    <!--<item-->
+    <!--    android:id=""-->
+    <!--    android:title=""-->
+    <!--    android:icon=""/>-->
+</menu>
