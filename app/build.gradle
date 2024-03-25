@@ -28,9 +28,15 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 }
-
+//allprojects {
+//    repositories {
+//        maven { url "https://jitpack.io" }
+//    }
+//}
 dependencies {
     implementation 'com.github.javafaker:javafaker:1.0.2'
+
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
     implementation libs.appcompat
     implementation libs.material
     implementation libs.activity

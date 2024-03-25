@@ -1,12 +1,21 @@
 package com.axiagroups.recyclerview;
 
+import android.app.Activity;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.axiagroups.recyclerview.adapter.ContactAdapter;
+import com.axiagroups.recyclerview.model.Contact;
+import com.axiagroups.recyclerview.util.Util;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +32,14 @@ public class AllContactFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    Activity referenceActivity;
+    View parentHolder;
+
+    List<Contact> conactList;
+
+    private RecyclerView recyclerView;
+    private ContactAdapter contactAdapter;
 
     public AllContactFragment() {
         // Required empty public constructor
@@ -59,6 +76,19 @@ public class AllContactFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_all_contact, container, false);
+
+        referenceActivity = getActivity();
+        parentHolder = inflater.inflate(R.layout.fragment_all_contact, container, false);
+
+
+        conactList = Util.getNameList();
+
+        recyclerView = parentHolder.findViewById(R.id.allContacts);
+        recyclerView.setLayoutManager(new LinearLayoutManager(referenceActivity));
+
+        contactAdapter = new ContactAdapter(referenceActivity, conactList);
+        recyclerView.setAdapter(contactAdapter);
+
+        return parentHolder;
     }
 }

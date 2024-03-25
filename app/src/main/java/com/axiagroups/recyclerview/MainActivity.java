@@ -65,9 +65,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     openFragment(new InfoFragment());
                     return true;
                 } else if (itemId == R.id.bottom_star) {
-
+                    openFragment(new StarFragment());
 //                  openFragment(new );
-//                    return true;
+                    return true;
 //                    Toast.makeText(this, "Chair", Toast.LENGTH_LONG).show();
                 }
 

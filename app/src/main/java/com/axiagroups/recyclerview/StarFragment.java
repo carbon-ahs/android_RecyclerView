@@ -1,5 +1,7 @@
 package com.axiagroups.recyclerview;
 
+import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,6 +9,14 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.utils.ColorTemplate;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +33,9 @@ public class StarFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    Activity referenceActivity;
+    View parentHolder;
 
     public StarFragment() {
         // Required empty public constructor
@@ -59,6 +72,38 @@ public class StarFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_star_fragment, container, false);
+        referenceActivity = getActivity();
+        parentHolder = inflater.inflate(R.layout.fragment_star, container,
+                false);
+
+//        backBtn = (Button) parentHolder.findViewById(R.id.back_btn);
+
+        PieChart pieChart = parentHolder.findViewById(R.id.pie_chart);
+
+        ArrayList<PieEntry> entries = new ArrayList<>();
+
+        entries.add(new PieEntry(80, "Achived"));
+        entries.add(new PieEntry(20, "Remaining"));
+
+        PieDataSet pieDataSet = new PieDataSet(entries, "Target");
+//        pieDataSet.setColor(ColorTemplate.MATERIAL_COLORS);
+        int [] colors={ Color.rgb(100,221,23), Color.rgb(128,0,128)};
+        pieDataSet.setColors(colors);
+        PieData pieData = new PieData(pieDataSet);
+        pieChart.setData(pieData);
+        pieChart.getDescription().setEnabled(false);
+        pieChart.animateY(1000);
+        pieChart.invalidate();
+
+
+
+
+
+
+
+
+//        return inflater.inflate(R.layout.fragment_star_fragment, container, false);
+        return parentHolder;
     }
+
 }

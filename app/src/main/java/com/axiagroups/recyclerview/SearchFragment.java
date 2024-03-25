@@ -1,12 +1,23 @@
 package com.axiagroups.recyclerview;
 
+import android.app.Activity;
 import android.os.Bundle;
 
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.axiagroups.recyclerview.adapter.ContactAdapter;
+import com.axiagroups.recyclerview.model.Contact;
+import com.axiagroups.recyclerview.util.Util;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +34,13 @@ public class SearchFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    Activity referenceActivity;
+    View parentHolder;
+    private RecyclerView recyclerView;
+    private ContactAdapter contactAdapter;
+    private SearchView searchView;
+    List<Contact> conactList;
 
     public SearchFragment() {
         // Required empty public constructor
@@ -58,7 +76,40 @@ public class SearchFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_search, container, false);
+        referenceActivity = getActivity();
+        parentHolder = inflater.inflate(R.layout.fragment_search, container, false);
+
+
+        conactList = Util.getNameList();
+
+        searchView = parentHolder.findViewById(R.id.searchbar_searchFragment);
+        Log.d("TAG", "onCreateView: " + searchView);
+        searchView.clearFocus();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+
+                contactAdapter = new ContactAdapter(referenceActivity, conactList);
+                Util.filteredList(referenceActivity , newText, conactList, contactAdapter);
+                recyclerView = parentHolder.findViewById(R.id.recyclerView_searchFragment);
+                recyclerView.setLayoutManager(new LinearLayoutManager(referenceActivity));
+
+                recyclerView.setAdapter(contactAdapter);
+                return true;
+            }
+        });
+
+//        recyclerView = parentHolder.findViewById(R.id.recyclerView_searchFragment);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(referenceActivity));
+//
+//        contactAdapter = new ContactAdapter(referenceActivity, conactList);
+//        recyclerView.setAdapter(contactAdapter);
+
+        return parentHolder;
     }
 }
